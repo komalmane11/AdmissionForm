@@ -1,0 +1,65 @@
+﻿@model AdmissionFormUsing_MVC.Models.Admission
+
+@{
+    ViewData["Title"] = "Admission Form";
+}
+
+<h2>Admission Form</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        alert("@TempData["SuccessMessage"]");
+        window.location.href = '@Url.Action("Homepage", "Admission")';
+    </script>
+}
+
+<form asp-action="Submit" method="post">
+    <div>
+        <label>Full Name:</label>
+        <input asp-for="FullName" class="form-control" required />
+    </div>
+
+    <div>
+        <label>Email:</label>
+        <input asp-for="Email" type="email" class="form-control" required />
+    </div>
+
+    <div>
+        <label>Mobile Number:</label>
+        <input asp-for="MobileNumber" type="tel" class="form-control" required />
+    </div>
+
+    <div>
+        <label>Class:</label>
+        <input asp-for="Class" class="form-control" required />
+    </div>
+
+    <div>
+        <label>Course Name:</label>
+        <select asp-for="CourseName" class="form-control" required>
+            <option value="">-- Select Course --</option>
+            <option value="Course 1"> .NET  </option>
+            <option value="Course 2">Java</option>
+            <option value="Course 3">Python</option>
+            <option value="Course 4">Angular</option>
+            <option value="Course 5">React</option>
+            <option value="Course 6">PHP</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Address:</label>
+        <textarea asp-for="Address" class="form-control" required></textarea>
+    </div>
+
+    <div>
+        <label>Payment Method:</label><br>
+        <input type="radio" asp-for="PaymentMethod" value="Card" required /> Card
+        <input type="radio" asp-for="PaymentMethod" value="UPI" required /> UPI
+        <input type="radio" asp-for="PaymentMethod" value="Cash" required /> Cash
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
